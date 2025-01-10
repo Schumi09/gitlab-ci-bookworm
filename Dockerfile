@@ -163,9 +163,9 @@ RUN touch /opt/gradle/wrapper/dists/gradle-8.7-bin/bhs2wmbdwecv87pi65oeuq5iu/gra
 ENV GRADLE_HOME=/opt/gradle/gradle-8.7/bin
 
 # Install vcpkg
-RUN cd /var/lib
+WORKDIR /var/lib
 RUN git clone https://github.com/microsoft/vcpkg.git
-RUN cd vcpkg
+WORKDIR /var/lib/vcpkg
 RUN ./bootstrap-vcpkg.sh
 RUN ./vcpkg integrate install
 
