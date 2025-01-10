@@ -1,32 +1,33 @@
 FROM debian:bookworm-slim
 
-RUN apt-get update && apt-get install -y build-essential
-RUN apt-get install -y devscripts cmake gcc g++ debhelper 
-RUN apt-get install -y dh-exec pkg-config libboost-dev libboost-filesystem-dev 
-RUN apt-get install -y libasound2-dev libgles2-mesa-dev
-RUN apt-get install -y gcc-multilib g++-multilib
-RUN apt-get install -y libtool autoconf
-RUN apt-get install -y git joe ccache rsync
-RUN apt-get install -y libcurl4-gnutls-dev
-RUN apt-get install -y uuid-dev
-RUN apt-get install -y qt6-base-dev
-RUN apt-get install -y zlib1g-dev zip unzip
-RUN apt-get install -y libxext-dev libz3-dev
+RUN apt update && apt install -y build-essential
+RUN apt install -y devscripts cmake gcc g++ debhelper 
+RUN apt install -y dh-exec pkg-config libboost-dev libboost-filesystem-dev 
+RUN apt install -y libasound2-dev libgles2-mesa-dev
+RUN apt install -y gcc-multilib g++-multilib
+RUN apt install -y libtool autoconf
+RUN apt install -y git joe ccache rsync
+RUN apt install -y libcurl4-gnutls-dev
+RUN apt install -y uuid-dev
+RUN apt install -y qt6-base-dev
+RUN apt install -y zlib1g-dev zip unzip
+RUN apt install -y libxext-dev libz3-dev
 
 # Tools
-RUN apt-get install -y doxygen doxygen-latex graphviz wget ccache rsync joe 
+RUN apt install -y doxygen doxygen-latex graphviz wget ccache rsync joe 
 
 # Java
-RUN apt-get install -y maven default-jdk binutils-i686-linux-gnu 
+RUN apt install -y maven default-jdk binutils-i686-linux-gnu 
 
 # Additional tools
-RUN apt-get install -y libboost-all-dev bzip2 curl git-core html2text libc6-i386 libc6-dev-i386
-RUN apt-get install -y lib32stdc++6 lib32gcc-s1 lib32z1 unzip openssh-client sshpass lftp 
-RUN apt-get install -y libgnutls28-dev adb 
-RUN apt-get install -y python3-pip
+RUN apt install -y libboost-all-dev bzip2 curl git-core html2text libc6-i386 libc6-dev-i386
+RUN apt install -y lib32stdc++6 lib32gcc-s1 lib32z1 unzip openssh-client sshpass lftp 
+RUN apt install -y libgnutls28-dev adb 
+RUN apt install -y python3-pip
+RUN apt install -y pkg-config
 
 # Install wget, sudo, and .NET SDK 8.0
-RUN apt-get install -y wget  && \
+RUN apt install -y wget  && \
     wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
     dpkg -i packages-microsoft-prod.deb && \
     rm packages-microsoft-prod.deb && \
@@ -161,15 +162,17 @@ RUN touch /opt/gradle/wrapper/dists/gradle-8.7-bin/bhs2wmbdwecv87pi65oeuq5iu/gra
 
 ENV GRADLE_HOME=/opt/gradle/gradle-8.7/bin
 
-# install selenium + chrome
-#RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-#RUN apt install ./google-chrome-stable_current_amd64.deb
-#RUN python3 -m pip install --upgrade pip
-#RUN pip install selenium
-
+# Install vcpkg
+RUN cd /var/lib
+RUN git clone https://github.com/microsoft/vcpkg.git
+RUN cd vcpkg
+RUN ./bootstrap-vcpkg.sh
+RUN ./vcpkg integrate install
 
 # add ccache to PATH
 ENV PATH=/usr/lib/ccache:${GRADLE_HOME}:${PATH}
 
 ENV CCACHE_DIR /mnt/ccache
 ENV NDK_CCACHE /usr/bin/ccache
+ENV VCPKG_ROOT=/var/lib/vcpkg
+
