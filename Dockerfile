@@ -160,7 +160,23 @@ RUN unzip /tmp/gradle-8.7-bin.zip -d /opt/gradle/wrapper/dists/gradle-8.7-bin/bh
 RUN touch /opt/gradle/wrapper/dists/gradle-8.7-bin/bhs2wmbdwecv87pi65oeuq5iu/gradle-8.7-bin.ok
 RUN touch /opt/gradle/wrapper/dists/gradle-8.7-bin/bhs2wmbdwecv87pi65oeuq5iu/gradle-8.7-bin.lck
 
-ENV GRADLE_HOME=/opt/gradle/gradle-8.7/bin
+# SETTINGS FOR GRADLE 8.9
+ADD https://services.gradle.org/distributions/gradle-8.9-bin.zip /tmp
+RUN mkdir -p /opt/gradle/wrapper/dists/gradle-8.9-bin/90cnw93cvbtalezasaz0blq0a
+RUN cp /tmp/gradle-8.9-bin.zip /opt/gradle/wrapper/dists/gradle-8.9-bin/90cnw93cvbtalezasaz0blq0a
+RUN unzip /tmp/gradle-8.9-bin.zip -d /opt/gradle/wrapper/dists/gradle-8.9-bin/90cnw93cvbtalezasaz0blq0a
+RUN touch /opt/gradle/wrapper/dists/gradle-8.9-bin/90cnw93cvbtalezasaz0blq0a/gradle-8.9-bin.ok
+RUN touch /opt/gradle/wrapper/dists/gradle-8.9-bin/90cnw93cvbtalezasaz0blq0a/gradle-8.9-bin.lck
+
+# SETTINGS FOR GRADLE 8.12
+ADD https://services.gradle.org/distributions/gradle-8.12-bin.zip /tmp
+RUN mkdir -p /opt/gradle/wrapper/dists/gradle-8.12-bin/cetblhg4pflnnks72fxwobvgv
+RUN cp /tmp/gradle-8.12-bin.zip /opt/gradle/wrapper/dists/gradle-8.12-bin/cetblhg4pflnnks72fxwobvgv
+RUN unzip /tmp/gradle-8.12-bin.zip -d /opt/gradle/wrapper/dists/gradle-8.12-bin/cetblhg4pflnnks72fxwobvgv
+RUN touch /opt/gradle/wrapper/dists/gradle-8.12-bin/cetblhg4pflnnks72fxwobvgv/gradle-8.12-bin.ok
+RUN touch /opt/gradle/wrapper/dists/gradle-8.12-bin/cetblhg4pflnnks72fxwobvgv/gradle-8.12-bin.lck
+
+ENV GRADLE_HOME=/opt/gradle/gradle-8.12/bin
 
 # Install vcpkg
 WORKDIR /var/lib
@@ -175,4 +191,9 @@ ENV PATH=/usr/lib/ccache:${GRADLE_HOME}:${PATH}
 ENV CCACHE_DIR /mnt/ccache
 ENV NDK_CCACHE /usr/bin/ccache
 ENV VCPKG_ROOT=/var/lib/vcpkg
+
+# ------------------------------------------------------
+# --- SENTRY CLI
+# ------------------------------------------------------
+RUN curl -sL https://sentry.io/get-cli/ | sh
 
