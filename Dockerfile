@@ -168,6 +168,14 @@ RUN unzip /tmp/gradle-8.9-bin.zip -d /opt/gradle/wrapper/dists/gradle-8.9-bin/90
 RUN touch /opt/gradle/wrapper/dists/gradle-8.9-bin/90cnw93cvbtalezasaz0blq0a/gradle-8.9-bin.ok
 RUN touch /opt/gradle/wrapper/dists/gradle-8.9-bin/90cnw93cvbtalezasaz0blq0a/gradle-8.9-bin.lck
 
+# SETTINGS FOR GRADLE 8.10.2
+ADD https://services.gradle.org/distributions/gradle-8.10.2-bin.zip /tmp
+RUN mkdir -p /opt/gradle/wrapper/dists/gradle-8.10.2-bin/a04bxjujx95o3nb99gddekhwo
+RUN cp /tmp/gradle-8.10.2-bin.zip /opt/gradle/wrapper/dists/gradle-8.10.2-bin/a04bxjujx95o3nb99gddekhwo
+RUN unzip /tmp/gradle-8.10.2-bin.zip -d /opt/gradle/wrapper/dists/gradle-8.10.2-bin/a04bxjujx95o3nb99gddekhwo
+RUN touch /opt/gradle/wrapper/dists/gradle-8.10.2-bin/a04bxjujx95o3nb99gddekhwo/gradle-8.10.2-bin.ok
+RUN touch /opt/gradle/wrapper/dists/gradle-8.10.2-bin/a04bxjujx95o3nb99gddekhwo/gradle-8.10.2-bin.lck
+
 # SETTINGS FOR GRADLE 8.12
 ADD https://services.gradle.org/distributions/gradle-8.12-bin.zip /tmp
 RUN mkdir -p /opt/gradle/wrapper/dists/gradle-8.12-bin/cetblhg4pflnnks72fxwobvgv
