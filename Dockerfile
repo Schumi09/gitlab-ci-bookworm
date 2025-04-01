@@ -39,7 +39,7 @@ RUN apt install -y wget  && \
 # --- Android NDK
 # ------------------------------------------------------
 
-ENV ANDROID_NDK_VERSION="r18b"
+ENV ANDROID_NDK_VERSION="r27"
 ENV ANDROID_NDK_HOME=/opt/android-ndk
 
 # download
@@ -59,7 +59,9 @@ RUN rm -rf /opt/android-ndk-tmp
 # ------------------------------------------------------
 # must be updated in case of new versions set 
 #ENV VERSION_SDK_TOOLS="4333796"
-ENV VERSION_SDK_TOOLS=6858069
+#ENV VERSION_SDK_TOOLS=6858069
+ENV VERSION_SDK_TOOLS=13114758
+
 ENV ANDROID_HOME="/sdk"
 ENV ANDROID_SDK_ROOT="/sdk"
 
