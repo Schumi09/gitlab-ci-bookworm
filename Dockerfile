@@ -48,7 +48,7 @@ WORKDIR /opt/android-ndk-tmp
 RUN wget  https://dl.google.com/android/repository/android-ndk-${ANDROID_NDK_VERSION}-linux.zip
 
 # uncompress
-RUN unzip android-ndk-${ANDROID_NDK_VERSION}-linux-x86_64.zip
+RUN unzip android-ndk-${ANDROID_NDK_VERSION}-linux.zip
 # move to its final location
 RUN mv ./android-ndk-${ANDROID_NDK_VERSION} ${ANDROID_NDK_HOME}
 # remove temp dir
