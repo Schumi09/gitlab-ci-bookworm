@@ -34,7 +34,6 @@ RUN apt install -y wget  && \
     apt-get update && \
     apt-get install -y dotnet-sdk-8.0
 
-
 # ------------------------------------------------------
 # --- Android NDK
 # ------------------------------------------------------
@@ -85,7 +84,6 @@ RUN ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --package_file=/sdk/packages.tx
 # ------------------------------------------------------
 # --- Finishing touch
 # ------------------------------------------------------
-
 
 RUN mkdir /scripts
 ADD scripts/get-release-notes.sh /scripts
