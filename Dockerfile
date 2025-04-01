@@ -39,13 +39,13 @@ RUN apt install -y wget  && \
 # --- Android NDK
 # ------------------------------------------------------
 
-ENV ANDROID_NDK_VERSION="r27"
+ENV ANDROID_NDK_VERSION="r27c"
 ENV ANDROID_NDK_HOME=/opt/android-ndk
 
 # download
 RUN mkdir /opt/android-ndk-tmp
 WORKDIR /opt/android-ndk-tmp
-RUN wget  https://dl.google.com/android/repository/android-ndk-${ANDROID_NDK_VERSION}-linux-x86_64.zip
+RUN wget  https://dl.google.com/android/repository/android-ndk-${ANDROID_NDK_VERSION}-linux.zip
 
 # uncompress
 RUN unzip android-ndk-${ANDROID_NDK_VERSION}-linux-x86_64.zip
