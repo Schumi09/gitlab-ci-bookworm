@@ -35,25 +35,6 @@ RUN apt install -y wget  && \
     apt-get install -y dotnet-sdk-8.0
 
 # ------------------------------------------------------
-# --- Android NDK
-# ------------------------------------------------------
-
-ENV ANDROID_NDK_VERSION="r28"
-ENV ANDROID_NDK_HOME=/opt/android-ndk
-
-# download
-RUN mkdir /opt/android-ndk-tmp
-WORKDIR /opt/android-ndk-tmp
-RUN wget  https://dl.google.com/android/repository/android-ndk-${ANDROID_NDK_VERSION}-linux.zip
-
-# uncompress
-RUN unzip android-ndk-${ANDROID_NDK_VERSION}-linux.zip
-# move to its final location
-RUN mv ./android-ndk-${ANDROID_NDK_VERSION} ${ANDROID_NDK_HOME}
-# remove temp dir
-RUN rm -rf /opt/android-ndk-tmp
-
-# ------------------------------------------------------
 # --- Android SDK
 # ------------------------------------------------------
 # must be updated in case of new versions set 
@@ -79,6 +60,27 @@ RUN mkdir -p /root/.android && touch /root/.android/repositories.cfg && ${ANDROI
 RUN yes | ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --licenses --sdk_root=/sdk
 
 RUN ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --package_file=/sdk/packages.txt --sdk_root=/sdk
+
+# ------------------------------------------------------
+# --- Android NDK
+# ------------------------------------------------------
+
+ENV ANDROID_NDK_VERSION="r28"
+ENV ANDROID_NDK_HOME=/sdk/ndk/28.0.13004108
+
+# download
+RUN mkdir /opt/android-ndk-tmp
+WORKDIR /opt/android-ndk-tmp
+RUN wget  https://dl.google.com/android/repository/android-ndk-${ANDROID_NDK_VERSION}-linux.zip
+
+# uncompress
+RUN unzip android-ndk-${ANDROID_NDK_VERSION}-linux.zip
+# move to its final location
+RUN mv ./android-ndk-${ANDROID_NDK_VERSION} ${ANDROID_NDK_HOME}
+# remove temp dir
+RUN rm -rf /opt/android-ndk-tmp
+
+
 
 
 # ------------------------------------------------------
