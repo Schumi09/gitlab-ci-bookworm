@@ -76,6 +76,7 @@ RUN wget  https://dl.google.com/android/repository/android-ndk-${ANDROID_NDK_VER
 # uncompress
 RUN unzip android-ndk-${ANDROID_NDK_VERSION}-linux.zip
 # move to its final location
+RUN mkdir -p ${ANDROID_NDK_HOME}
 RUN mv ./android-ndk-${ANDROID_NDK_VERSION} ${ANDROID_NDK_HOME}
 # remove temp dir
 RUN rm -rf /opt/android-ndk-tmp
