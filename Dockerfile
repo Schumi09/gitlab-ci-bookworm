@@ -38,7 +38,7 @@ RUN apt install -y wget  && \
 # --- Android NDK
 # ------------------------------------------------------
 
-ENV ANDROID_NDK_VERSION="r27c"
+ENV ANDROID_NDK_VERSION="r28"
 ENV ANDROID_NDK_HOME=/opt/android-ndk
 
 # download
