@@ -68,7 +68,7 @@ ENV ANDROID_NDK_VERSION="r28"
 ENV ANDROID_NDK_HOME=/sdk/ndk/28.0.13004108
 
 # download
-RUN mkdir /opt/android-ndk-tmp
+RUN mkdir -p /opt/android-ndk-tmp
 WORKDIR /opt/android-ndk-tmp
 RUN wget  https://dl.google.com/android/repository/android-ndk-${ANDROID_NDK_VERSION}-linux.zip
 
@@ -85,7 +85,7 @@ ENV ANDROID_NDK_VERSION="r18b"
 ENV ANDROID_NDK_HOME=/sdk/ndk/18.1.5063045
 
 # download
-RUN mkdir /opt/android-ndk-tmp
+RUN mkdir -p /opt/android-ndk-tmp
 WORKDIR /opt/android-ndk-tmp
 RUN wget  https://dl.google.com/android/repository/android-ndk-${ANDROID_NDK_VERSION}-linux.zip
 
