@@ -90,7 +90,7 @@ WORKDIR /opt/android-ndk-tmp
 RUN wget  https://dl.google.com/android/repository/android-ndk-${ANDROID_NDK_VERSION}-linux-x86_64.zip
 
 # uncompress
-RUN unzip android-ndk-${ANDROID_NDK_VERSION}-linux.zip
+RUN unzip android-ndk-${ANDROID_NDK_VERSION}-linux-x86_64.zip
 # move to its final location
 RUN mkdir -p ${ANDROID_NDK_HOME}
 RUN mv ./android-ndk-${ANDROID_NDK_VERSION}/* ${ANDROID_NDK_HOME}
