@@ -64,7 +64,6 @@ RUN ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --package_file=/sdk/packages.tx
 # ------------------------------------------------------
 # --- Android NDK
 # ------------------------------------------------------
-
 ENV ANDROID_NDK_VERSION="r28"
 ENV ANDROID_NDK_HOME=/sdk/ndk/28.0.13004108
 
@@ -81,6 +80,22 @@ RUN mv ./android-ndk-${ANDROID_NDK_VERSION}/* ${ANDROID_NDK_HOME}
 # remove temp dir
 RUN rm -rf /opt/android-ndk-tmp
 
+# TODO: Remove this when r18b is no longer needed
+ENV ANDROID_NDK_VERSION="r18b"
+ENV ANDROID_NDK_HOME=/sdk/ndk/18.1.5063045
+
+# download
+RUN mkdir /opt/android-ndk-tmp
+WORKDIR /opt/android-ndk-tmp
+RUN wget  https://dl.google.com/android/repository/android-ndk-${ANDROID_NDK_VERSION}-linux.zip
+
+# uncompress
+RUN unzip android-ndk-${ANDROID_NDK_VERSION}-linux.zip
+# move to its final location
+RUN mkdir -p ${ANDROID_NDK_HOME}
+RUN mv ./android-ndk-${ANDROID_NDK_VERSION}/* ${ANDROID_NDK_HOME}
+# remove temp dir
+RUN rm -rf /opt/android-ndk-tmp
 
 
 
